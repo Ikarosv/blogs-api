@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
   blog_posts.init({
     id: DataTypes.INTEGER,
     title: DataTypes.STRING,
-    user_id: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     content: DataTypes.STRING,
     published: DataTypes.DATE,
     updated: DataTypes.DATE
   }, {
     timestamps: false,
+    underscored: true,
     sequelize,
     modelName: 'blog_posts',
   });

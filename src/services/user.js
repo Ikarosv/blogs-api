@@ -10,4 +10,10 @@ const createNewUser = async (user) => {
   return generateToken(userInfos);
 };
 
-module.exports = { createNewUser };
+const getAllUsers = async () => {
+  const users = await User.findAll();
+  if (!users) throw generateError(400, 'Invalid entries. Try again.');
+  return users;
+};
+
+module.exports = { createNewUser, getAllUsers };

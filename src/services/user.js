@@ -11,7 +11,7 @@ const createNewUser = async (user) => {
 };
 
 const getAllUsers = async () => {
-  const users = await User.findAll();
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
   if (!users) throw generateError(400, 'Invalid entries. Try again.');
   return users;
 };

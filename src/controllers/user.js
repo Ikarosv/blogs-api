@@ -7,7 +7,7 @@ const createNewUser = async (req, res) => {
     const token = await UserService.createNewUser(userInfos);
     return res.status(201).json({ token });
   } catch (error) {
-    return res.status(error.status).json({ message: error.message });
+    if (error.status) return res.status(error.status).json({ message: error.message });
   }
 };
 

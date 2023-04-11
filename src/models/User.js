@@ -1,5 +1,5 @@
 'use strict';
-const blogPosts = require('./blog_posts');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  User.hasMany(blogPosts);
+  User.associate = ({ blog_posts: blogPosts }) => {
+    User.hasMany(blogPosts);
+  };
 
   return User;
 };

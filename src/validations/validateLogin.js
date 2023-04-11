@@ -1,8 +1,9 @@
 const joi = require('joi');
+const { email, password } = require('./validationsConstants');
 
 const validateLoginFields = joi.object({
-  email: joi.string().email().required(),
-  password: joi.string().required(),
+  email,
+  password,
 });
 
 module.exports = { validateLoginFields };

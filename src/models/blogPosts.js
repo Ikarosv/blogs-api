@@ -1,15 +1,13 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class blog_posts extends Model {
-    static associate({users}) {
-      this.belongsTo(users);
-    }
-  };
-  blog_posts.init({
-    id: DataTypes.INTEGER,
+  const blogPosts = sequelize.define('blog_posts', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     title: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     content: DataTypes.STRING,
@@ -19,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     underscored: true,
     sequelize,
-    modelName: 'blog_posts',
   });
-  return blog_posts;
+  
+  blogPosts.associate = ({ User }) => {
+    blogPosts.belongsTo(User);
+  }
+
+  return blogPosts;
 };

@@ -10,10 +10,18 @@ const createNewUser = async (user) => {
   return generateToken(userInfos);
 };
 
+const excludePassword = { attributes: { exclude: ['password'] } };
+
 const getAllUsers = async () => {
-  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  const users = await User.findAll(excludePassword);
   if (!users) throw generateError(400, 'Invalid entries. Try again.');
   return users;
 };
 
-module.exports = { createNewUser, getAllUsers };
+const getById = async (id) => {
+  const user = await User.findByPk(id, excludePassword);
+  if (!user) throw generateError(404, 'User does not exist');
+  return user;
+};
+
+module.exports = { createNewUser, getAllUsers, getById };

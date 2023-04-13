@@ -9,4 +9,12 @@ const createNewCategory = async (name) => {
   return category;
 };
 
-module.exports = { createNewCategory };
+const getAllCategories = async () => {
+  const categories = await Category.findAll();
+  if (!categories) {
+    throw generateError(400, 'Invalid entries. Try again.');
+  }
+  return categories;
+};
+
+module.exports = { createNewCategory, getAllCategories };

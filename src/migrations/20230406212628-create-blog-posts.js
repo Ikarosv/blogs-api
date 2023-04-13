@@ -17,7 +17,7 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
-      publised: {
+      published: {
         type: Sequelize.DATE
       },
       updated: {

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const blogPosts = sequelize.define('blog_posts', {
+  const blogPosts = sequelize.define('BlogPost', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -19,8 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
   });
   
-  blogPosts.associate = ({ User }) => {
+  blogPosts.associate = ({ User, Category }) => {
     blogPosts.belongsTo(User);
+    blogPosts.belongsToMany(Category, { foreignKey: 'post_id', through: 'posts_categories', as: 'categories'  });
   }
 
   return blogPosts;

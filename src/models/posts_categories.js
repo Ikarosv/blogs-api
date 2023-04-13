@@ -3,20 +3,33 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class posts_categories extends Model {
-    static associate({ blog_posts, categories }) {
-      this.belongsTo(blog_posts, { foreignKey: 'post_id' });
-      this.belongsTo(categories, { foreignKey: 'category_id' });
+  const postsCategories =  sequelize.define('posts_categories', {
+    postId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'blog_posts',
+        key: 'id',
+      }
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'categories',
+        key: 'id',
+      }
     }
-  };
-  posts_categories.init({
-    postId: DataTypes.INTEGER,
-    categoryId: DataTypes.INTEGER
   }, {
     timestamps: false,
     underscored: true,
     sequelize,
-    modelName: 'posts_categories',
   });
-  return posts_categories;
+
+  // postsCategories.associate = ({ blog_posts, categories }) => {
+  //   this.belongsTo(blog_posts, { foreignKey: 'post_id' });
+  //   this.belongsTo(categories, { foreignKey: 'category_id' });
+  // }
+ 
+  return postsCategories;
 };

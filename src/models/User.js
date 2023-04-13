@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  User.associate = ({ blog_posts: blogPosts }) => {
-    User.hasMany(blogPosts);
+  User.associate = ({ BlogPost }) => {
+    User.hasMany(BlogPost);
   };
 
   return User;

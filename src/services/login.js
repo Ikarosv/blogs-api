@@ -3,7 +3,8 @@ const generateError = require('../utils/generateError');
 const generateToken = require('../utils/generateToken');
 
 const login = async (email, password) => {
-  const { dataValues: user } = await User.findOne({
+  console.log('bbbbbbbbbbbbbbbbbbbbb');
+  const data = await User.findOne({
     where: {
       email,
       password,
@@ -12,10 +13,13 @@ const login = async (email, password) => {
       exclude: ['password'],
     },
   });
-console.log('user', user);
-  if (!user) {
+  if (!data) {
     throw generateError(400, 'Invalid fields');
   }
+
+  const { dataValues: user } = data;
+  console.log('user', user);
+  console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 
   return generateToken(user);
 };

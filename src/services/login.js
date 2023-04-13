@@ -3,7 +3,6 @@ const generateError = require('../utils/generateError');
 const generateToken = require('../utils/generateToken');
 
 const login = async (email, password) => {
-  console.log('bbbbbbbbbbbbbbbbbbbbb');
   const data = await User.findOne({
     where: {
       email,
@@ -18,8 +17,6 @@ const login = async (email, password) => {
   }
 
   const { dataValues: user } = data;
-  console.log('user', user);
-  console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 
   return generateToken(user);
 };

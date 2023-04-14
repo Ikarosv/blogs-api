@@ -2,6 +2,7 @@ const express = require('express');
 const loginRouter = require('./routers/login');
 const userRouter = require('./routers/user');
 const categoriesRouter = require('./routers/categories');
+const postRouter = require('./routers/post');
 
 // ...
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
 app.use('/categories', categoriesRouter);
+app.use('/post', postRouter);
 
 // não remova ou mova esse endpoint
 app.get('/', (_request, response) => {

@@ -7,4 +7,17 @@ const image = joi.string();
 
 const categoryName = joi.string().required().label('name');
 
-module.exports = { email, password, displayName, image, categoryName };
+const title = joi.string().required().label('title');
+const content = joi.string().required().label('content');
+const categoryIds = joi.array().items(joi.number()).required().label('categoryIds');
+
+module.exports = {
+  email,
+  password,
+  displayName,
+  image,
+  categoryName,
+  title,
+  content,
+  categoryIds,
+};
